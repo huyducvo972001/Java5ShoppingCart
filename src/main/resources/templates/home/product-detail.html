@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sản phẩm</title>
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/home/style.css}"/>
+</head>
+<body>
+<div
+        th:replace="home/header.html :: header ">
+</div>
+<article>
+    <div class="container product_detail mt-4">
+        <div class="row">
+            <div class="col-4">
+                <img th:src="@{/img/{image}(image = ${productDetails.image})}"
+                     width="100%" alt=""/>
+            </div>
+            <div class="col-4 mt-5">
+                <p class="title-product">[[${productDetails.name}]]</p>
+                <p class="category-product mt-4">Danh mục: [[${productDetails
+                    .category.name}]]</p>
+                <p class="raiting-product mt-4">
+                    <i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i
+                ><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                </p>
+                <p class="price-product mt-4">
+                    [[${#numbers.formatDecimal(productDetails.price-productDetails.discount,
+                    0,
+                    'COMMA', 0, 'POINT')}]]<sup>₫</sup>
+                    <span>[[${#numbers.formatDecimal(productDetails.price, 0, 'COMMA',
+                  0, 'POINT')}]]<sup>₫</sup></span>
+                </p>
+                <a
+                        th:href="@{/add-to-cart/{product_id}(product_id = ${productDetails.id}, id = 1)}"><button class="add-to-cart">Thêm vào giỏ</button></a>
+            </div>
+            <div class="col-4 mt-5">
+                <div class="card info_security">
+                    <div class="card-body" style="font-size: 14px">
+                        <h5 class="card-title" style="font-weight: 600">
+                            Thông tin máy
+                        </h5>
+                        <div class="card-text row">
+                            <div class="col-2">
+                                <i class="bi bi-shield-check"
+                                   style="font-size: 50px"></i>
+                            </div>
+                            <div class="col">
+                                Bảo hành chính hãng 12 tháng tại trung tâm bảo
+                                hành ủy
+                                quyền, 1 đổi 1 trong 30 ngày nếu có lỗi phần
+                                cứng từ NSX.
+                                Gia hạn bảo hành thời gian giãn cách.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description mt-5 mb-5">
+            <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a
+                            class="nav-link active"
+                            id="ex1-tab-1"
+                            data-mdb-toggle="tab"
+                            href="#ex1-tabs-1"
+                            role="tab"
+                            aria-controls="ex1-tabs-1"
+                            aria-selected="true"
+                    >Mô tả</a
+                    >
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a
+                            class="nav-link"
+                            id="ex1-tab-2"
+                            data-mdb-toggle="tab"
+                            href="#ex1-tabs-2"
+                            role="tab"
+                            aria-controls="ex1-tabs-2"
+                            aria-selected="false"
+                    >Thông số</a
+                    >
+                </li>
+            </ul>
+
+            <div class="tab-content container" id="ex1-content">
+                <div
+                        class="tab-pane fade show active"
+                        id="ex1-tabs-1"
+                        role="tabpanel"
+                        aria-labelledby="ex1-tab-1"
+                >
+                    Là sản phẩm mang đến độ hoàn thiện cao hơn nhiều so với hai
+                    phiên
+                    bản trước, điện thoại Samsung Galaxy Fold 3 được thiết kế
+                    kích
+                    thước hài hòa hơn. Giúp bạn có thể dễ dàng cầm khi đóng hoặc
+                    mở
+                    màn hình đều dễ sử dụng nhất. Bộ khớp nối bản lề mới giúp
+                    kết nối
+                    bộ khung của Galaxy Z Fold3 hoàn hảo hơn. Tăng cao độ bền
+                    khi đóng
+                    mở liên tục và cố định cực kỳ chắc chắn.
+                </div>
+                <div
+                        class="tab-pane fade"
+                        id="ex1-tabs-2"
+                        role="tabpanel"
+                        aria-labelledby="ex1-tab-2"
+                >
+                    <table class="table table-striped" style="width: 800px;">
+                        <tbody>
+                        <tr>
+                            <th>Kích thước màn hình:</th>
+                            <td>7.6 inches</td>
+                        </tr>
+                        <tr>
+                            <th>Công nghệ màn hình:</th>
+                            <td>Dynamic AMOLED</td>
+                        </tr>
+                        <tr>
+                            <th>Camera sau:</th>
+                            <td>Camera góc rộng: 12 MP, f/1.8, 26mm, Dual Pixel
+                                PDAF, OIS
+                                Camera tele: 12 MP, f/2.4, 52mm, PDAF, OIS, 2x
+                                Zoom quang học
+                                Camera góc siêu rộng: 12 MP, f/2.2
+                                Camera màn hình phụ: 10MP, f/2.2
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Camera trước:</th>
+                            <td>Camera ẩn dưới màn hình: 4MP, f/1.8</td>
+                        </tr>
+                        <tr>
+                            <th>Chipset:</th>
+                            <td>Snapdragon 888 5G (5 nm)</td>
+                        </tr>
+                        <tr>
+                            <th>Dung lượng RAM:</th>
+                            <td>12 GB</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5 product-list">
+            <h5>Sản phẩm khác</h5>
+            <hr class="mt-4 mb-4"/>
+            <div class="row">
+                <div class="col" th:each="product:${list5Product}">
+                    <div class="card">
+                        <img th:src="@{/img/{image}(image=${product.image})}"
+                             class="card-img-top" width="100%"
+                             alt="..."/>
+
+                        <div class="card-body">
+                            <div class="row category_product">
+                                <div class="col-8">[[${product.category.name}]]
+                                </div>
+                                <div class="col text-right">
+                                    <div style="text-align: right">
+                                        <i class="far fa-star"></i><i
+                                            class="far fa-star"></i
+                                    ><i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <p class="card-title font-weight-bold">
+                                <a href="">[[${product.name}]]</a>
+                            </p>
+                            <div class="row" style="margin-top: 15px">
+                                <div class="col">
+                                    <p class="card-text" style="color: #dc3545; font-size:
+                      18px; margin-bottom: 20px;"
+                                    >[[${#numbers.formatDecimal(product.price-product.discount, 0,
+                                        'COMMA', 0, 'POINT')}]]<sup>₫</sup></p>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <p class="card-text"><del>[[${#numbers.formatDecimal(product.price, 0,
+                                        'COMMA', 0, 'POINT')}]]<sup>₫</sup></del></p>
+                                </div>
+                            </div>
+                            <a
+                                    th:href="@{/add-to-cart/{product_id}(product_id = ${product.id}, id = 1)}" class="btn btn-primary"
+                            ><i class="fas fa-cart-plus"></i> &ensp; Thêm vào
+                                giỏ</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<div
+        th:replace="home/footer.html :: footer ">
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<style>
+    .kd{
+        border: 1px solid #803d3d;
+        border-radius: 10px;
+        padding: 20px;
+
+    }
+    .container{ background-color: white;
+        padding: 50px;
+        border-radius: 10px;
+        margin-top: 20px;
+        box-shadow: 0px 0px 10px #f0eeee;
+    }
+    body{
+        background-color: #f7f6f6;
+
+    }
+</style>
+<body >
+<div class="container">
+<div class="row kd">
+    <div class="col">
+        <p><b>Trường:</b> Cao đẳng thực hành FPT Polytechnic</p>
+        <p><b>Lớp:</b> UD16102</p>
+        <p><b>Họ và tên:</b> Võ Đức Huy</p>
+    </div>
+    <div class="col" style="border-left: 1px solid">
+        <span>Thứ 6 ngày 28 tháng 10 năm 2021</span>
+        <p class="text-center"
+           style="font-size: 28px; margin-top: 10px; color: #b21616"><b>Bảo vệ
+            Assignment</b></p>
+        <span><b>Môn:</b> Java 5</span>
+    </div>
+</div>
+<center style="margin-top: 50px; font-size: 24px; text-decoration: underline"><b>Bài
+    làm</b></center>
+<div class="row ">
+    <div class="col">
+        <form th:object="${item}" class="mt-5">
+            <input type="hidden" th:field="*{id}" class="form-control">
+            <div class="form-group">
+                <label class="font-weight-bold">ID</label>
+                <input type="text" class="form-control mt-3" th:field="*{slug}">
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Tên sản phẩm</label>
+                <input type="text" class="form-control mt-3" th:field="*{name}">
+            </div>
+            <input type="submit" class="btn btn-primary"
+                   value="Create"
+                   formaction="/category/create"
+                   formmethod="POST"/>
+
+            <input type="submit" class="btn btn-secondary"
+                   formaction="/category/update"
+                   formmethod="POST"
+                   value="Update"/>
+
+            <a th:href="@{/category/delete/{id}(id = ${item.id})}"
+               class="btn btn-danger">Delete</a>
+            <a href="/category/index" class="btn btn-info">Reset</a>
+        </form>
+    </div>
+    <div class="col">
+
+        <table class="table table-borderless mt-5" style="width:100%">
+            <tr style="background-color: #ddd9d9">
+                <th class="text-center w-25">Id</th>
+                <th>Name</th>
+                <th class="text-center">Action</th>
+            </tr>
+
+            <tr th:each="item:${items}">
+                <td class="text-center">[[${item.slug}]]</td>
+                <td>[[${item.name}]]</td>
+                <td class="text-center"><a
+                        th:href="@{/category/edit/{id}(id = ${item.id})}">Edit</a></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

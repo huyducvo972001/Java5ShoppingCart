@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>
+        Supplier
+    </title>
+    <meta
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+            name="viewport"
+    />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous">
+    <link
+            th:href="@{/admin/css/light-bootstrap-dashboard.css?v=2.0.0}"
+            rel="stylesheet"
+    />
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <div
+            th:replace="admin/slide-bar.html :: slide-bar ">
+    </div>
+    <div class="main-panel">
+
+        <div
+                th:replace="admin/nav-bar.html :: nav-bar ">
+        </div>
+
+        <div class="content">
+            <div class="container">
+                <table class="table bg-white table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 10%" class="text-center">
+                            STT
+                        </th>
+                        <th scope="col">Tên thương hiệu</th>
+                        <th scope="col">Logo thương hiệu</th>
+                        <th scope="col" class="text-center">Sự kiện</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="supplier :${pageSupplier.content}">
+                        <th class="text-center" scope="row">[[${supplier.id}]]
+                        </th>
+                        <td>[[${supplier.name}]]</td>
+                        <td><img width="120px"
+                                 th:src="@{/home/image/logo_band/{image}(image = ${supplier.image})}"/>
+                        </td>
+                        <td class="text-center">
+                            <a
+                                    th:href="@{/admin/suppliers/edit/{id}(id = ${supplier.id})}">
+                                <i class="far fa-edit"></i></a> &ensp;
+                            <a
+                                    th:href="@{/admin/suppliers/delete/{id}(id = ${supplier.id})}"><i
+                                    class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+
+                    <form th:object="${supplier}" enctype="multipart/form-data">
+                        <tr id="add-new">
+                            <th scope="row" class="text-center">Thông tin</th>
+                            <input type="hidden" th:field="*{id}">
+                            <td><input type="text" th:field="*{name}"
+                                       placeholder="Nhập tên thương hiệu"></td>
+                            <td><input type="text" hidden th:field="*{image}">
+
+
+                                <input type="file" name="attach"/>
+                            </td>
+                            <td class="text-center"><input type="submit"
+                                                           class="btn"
+                                                           value="Lưu"
+                                                           formaction="/admin/suppliers/create"
+                                                           formmethod="POST"/>
+                            </td>
+                        </tr>
+                    </form>
+                    </tbody>
+                </table>
+                <div class="pagination d-flex justify-content-between mt-4">
+                <span><a th:href="@{/admin/suppliers/(p=0)}">
+                    First</a></span>
+
+                    <span>
+                    <a
+                            th:href="@{/admin/suppliers/(p = ${pageSupplier.number<=0? 0 : pageSupplier.number-1})}">
+                    <i class="fas fa-long-arrow-alt-left"></i> &ensp;
+                    Previous</a>
+                <a
+                        th:href="@{/admin/suppliers/(p = ${pageSupplier.number >= pageSupplier.totalPages - 1 ? pageSupplier.totalPages -1 :pageSupplier.number + 1})}">Next
+                    &ensp; <i class="fas fa-long-arrow-alt-right"></i></a>
+               </span>
+
+                    <span> <a
+                            th:href="@{/admin/suppliers/(p=${pageSupplier.totalPages - 1})}">Last</a></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <footer class="text-center align-bottom bg-white">
+            <p style="opacity: 0.9; padding: 10px; border-top: 2px solid rgb(224, 224, 224);">
+                © FPT Polytechnic - Assignment Java 5 - IT16102</p>
+        </footer>
+
+    </div>
+</div>
+</body>
+<script>
+    document.querySelector("#suppliers").classList.add("active");
+
+</script>
+
+<style>
+    td, th {
+        vertical-align: middle !important;
+    }
+
+    #add-new input {
+        border: none;
+        border-bottom: 1px solid rgb(209, 204, 204);
+        width: 100%;
+    }
+
+    #add-new .btn {
+        background-color: blueviolet;
+
+        color: white;
+        width: 100px;
+    }
+
+    .pagination a {
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        color: #007bff;
+        padding: 10px 20px;
+        box-shadow: 1px 1px 5px #a5a5a5;
+        transition: 1s;
+    }
+
+    .pagination a:hover {
+        box-shadow: 2px 2px 20px #a4a3a3;
+    }
+</style>
+</html>

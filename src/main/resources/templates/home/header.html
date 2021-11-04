@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <div class="top-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse"
+                         id="navbarSupportedContent">
+                        <span>Điện thoại: (+123) 123 321 345</span>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <a style="margin-right: 10px; font-size: 14px">Tài
+                            khoản</a>
+
+
+                        <a
+                                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-mdb-toggle="dropdown"
+                                aria-expanded="false"
+                        >
+                            <img
+                                    th:src="@{/admin/image/{image}(image = ${imageAvatar})}"
+                                    class="rounded-circle"
+                                    height="30"
+                                    alt=""
+                                    loading="lazy"
+                            />
+                        </a>
+                        <ul th:if="${isLogin == false}"
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                        >
+                            <li>
+                                <a class="dropdown-item"
+                                   th:href="@{/home/login}">Đăng
+                                    nhập</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   th:href="@{/home/register/confim-email}">Đăng
+                                    ký</a>
+                            </li>
+                        </ul>
+                        <ul th:if="${isLogin == true}"
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                        >
+                            <li>
+                                <a class="dropdown-item"
+                                   th:if="${isAdmin==true}"
+                                   th:href="@{/admin/index}">Quản lý cửa
+                                    hàng</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   th:href="@{/home/acount-management}">Thông
+                                    tin tài
+                                    khoản</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   th:href="@{/home/logout}">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="body-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 align-self-center">
+                    <a th:href="@{/home/index}"><img
+                            th:src="@{/home/image/logo1.png}"
+                            alt=""
+                            width="100%"/></a>
+                </div>
+                <div class="col align-self-center">
+                    <form action="/home/result-search">
+                        <div class="input-group justify-content-center">
+
+                            <div class="form-outline" style="width: 70%">
+
+                                <input
+                                        type="text" name="keyword_search"
+                                        placeholder="Tìm kiếm..."
+                                        class="form-control bg-white"
+                                />
+                            </div>
+
+                            <button type="submit" class="btn btn-dark">
+                                <i class="fas fa-search"></i>
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2 align-self-center cart-icon">
+                    <div style="text-align: right; margin-right: 20px"
+                         class="cart">
+                        <a th:href="@{/home/cart}" style="color: white">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span
+                                    class="quantity">[[${total}]]</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Giỏ hàng</title>
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+    ></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/home/style.css}"/>
+</head>
+<body>
+<div
+        th:replace="home/header.html :: header ">
+</div>
+<article>
+    <div class="container">
+        <div class="mt-4 mb-5">
+            <h4>Giỏ hàng</h4>
+            <hr/>
+        </div>
+        <div class="row mb-5">
+            <div class="col-9 cart-list">
+
+                    <table class="table table-borderless">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="2">Product</th>
+                            <th scope="col" class="text-center">Số lượng</th>
+                            <th scope="col" class="text-center">Giá</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="align-middle" th:each="item:${listOrder}">
+                            <form th:action="@{/update-to-cart/{product_id}(product_id = ${item.product.id})}" method="post">
+                            <th scope="row">
+                                <img th:src="@{/img/{image}(image=${item.product.image})}"
+                                     width="100px" alt=""/>
+                            </th>
+                            <td class="product-title">[[${item.product.name}]]</td>
+                            <td class="text-center product-quantity">
+                                <input type="number" name="qty"
+                                       th:value="${item.quantity}"
+                                       class="form-control"
+                                />
+                            </td>
+                            <td
+                                    class="text-center product-price">
+                                [[${#numbers.formatDecimal((item.product.price-item.product.discount)*item.quantity,
+                                0,
+                                'COMMA', 0, 'POINT')}]]<sup>₫</sup></td>
+                            <td>
+                                <button class="btn btn-default" >
+                                    <i class="fas fa-pen-nib"></i>
+                                </button>
+                                <a class="btn btn-default"
+                                        th:href="@{/remove-to-cart/{product_id}(product_id = ${item.product.id})}">
+                                        <i class="fas fa-trash-alt"></i>
+
+
+                                </a>
+                            </td>
+                            </form>
+                        </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+            <div class="col">
+                <div class="invoice">
+                    <div class="row">
+                        <div class="col-7 title">
+                            <p>Tổng tiền:</p>
+                            <p>Phí vận chuyển:</p>
+                            <p>Tổng:</p>
+                        </div>
+                        <div class="col price">
+                            <p>[[${totalMoney}]]<sup>đ</sup></p>
+                            <p>80.000<sup>đ</sup></p>
+                            <p>[[${totalMoneyShip}]]<sup>đ</sup></p>
+                        </div>
+                    </div>
+                    <a class="button" th:href="@{/home/cart/pay}">
+                        <button class="btn">Thanh toán</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<div
+        th:replace="home/footer.html :: footer ">
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" color-on-scroll="500"
+     th:fragment="nav-bar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> [[${titleTab}]] </a>
+
+        <div
+                class="collapse navbar-collapse justify-content-end"
+                id="navigation"
+        >
+            <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                  <span class="no-icon font-weight-bold"
+                  >[[${user_nav.firstName}]] [[${user_nav.lastName}]]
+                    <img
+                            th:src="@{/admin/image/{image}(image = ${user_nav.image})}"
+                            style="border-radius: 100%"
+                            width="50px"
+                            alt=""
+                    /></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Navbar -->
+</body>
+</html>

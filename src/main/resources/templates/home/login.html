@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập</title>
+
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          rel="stylesheet"
+  />
+
+  <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet"
+  />
+
+  <link
+          href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+          rel="stylesheet"
+  />
+  <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+  ></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" th:href="@{/home/style.css}"/>
+</head>
+<body>
+<div
+        th:replace="home/header.html :: header ">
+</div>
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-8 align-self-center">
+        <img th:src="@{/img/logo4.png}" width="40%" alt="" style="margin-left:
+        140px;" />
+      </div>
+      <div class="col">
+        <form th:action="@{/home/action/login}" method="post">
+          <div class="login-form">
+            <h4 class="text-center">ĐĂNG NHẬP</h4>
+            <div class="form-group">
+              <i class="bi bi-person-fill"></i
+              ><input type="text" name="username" placeholder="Tên đăng nhập" />
+            </div>
+            <div class="form-group">
+              <i class="bi bi-key-fill"></i
+              ><input type="password" name="password" placeholder="Mật khẩu" />
+            </div>
+            <div class="forgot-pass">
+              <a th:href="@{/home/acount/forgot-password}">Quên mật khẩu?</a>
+            </div>
+            <div class="mt-3">
+              <button class="btn btn-primary">Đăng nhập</button>
+            </div>
+            <small id="emailHelp"
+                   class="form-text text-muted text-danger mt-4">
+              [[${hasErrorLogin}]]</small>
+            <div class="hr-sect">Hoặc
+              <p> Bạn là thành viên mới?<a th:href="@{/home/register/confim-email}">
+                Đăng ký</a></p>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</article>
+<div
+        th:replace="home/footer.html :: footer ">
+</div>
+</body>
+</html>

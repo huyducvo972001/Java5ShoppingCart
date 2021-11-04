@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="sidebar" th:fragment="slide-bar">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a th:href="@{/home/index}" class="simple-text"> <img
+                    th:src="@{/admin/image/logo.png}"
+                    width="150px" alt=""> </a>
+        </div>
+        <ul class="nav">
+            <li id="statistical">
+                <a class="nav-link" th:href="@{/admin/statistical/2021}">
+                    <i class="fas fa-chart-pie"></i>
+                    <p>Thống kê</p>
+                </a>
+            </li>
+            <li id="invoices">
+                <a class="nav-link" th:href="@{/admin/invoice}">
+                    <i class="fas fa-receipt"></i>
+                    <p>Hoá đơn</p>
+                </a>
+            </li>
+            <li id="users">
+                <a class="nav-link" th:href="@{/manager-user/users}">
+                    <i class="fas fa-user"></i>
+                    <p>Người dùng</p>
+                </a>
+            </li>
+            <li id="products">
+                <a class="nav-link" th:href="@{/manager-product/products}">
+                    <i class="fas fa-boxes"></i>
+                    <p>Sản phẩm</p>
+                </a>
+            </li>
+            <li id="categories">
+                <a class="nav-link" th:href="@{/admin/categories}">
+                    <i class="fas fa-bookmark"></i>
+                    <p>Danh mục</p>
+                </a>
+            </li>
+            <li id="suppliers">
+                <a class="nav-link" th:href="@{/admin/suppliers}">
+                    <i class="fas fa-briefcase"></i>
+                    <p>Thương hiệu</p>
+                </a>
+            </li>
+
+            <li class="nav-item active active-pro">
+                <a class="nav-link active" th:href="@{/home/logout}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p>Logout</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
